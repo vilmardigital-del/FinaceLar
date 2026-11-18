@@ -1,0 +1,6 @@
+{
+  "name": "Caixa Simples",
+  "description": "Aplicativo simples para registrar entradas e saídas de valores em reais com listagens por data.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
