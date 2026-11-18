@@ -8,6 +8,8 @@ import {
 import { formatBRL, parseBRLInput } from '../utils/format';
 
 interface EntryFormProps {
+  totalEntradas: number;
+  totalSaidas: number;
   onSave: (entry: {
     type: TransactionType;
     descricao: TransactionDescricao;
@@ -15,7 +17,11 @@ interface EntryFormProps {
   }) => void;
 }
 
-export function EntryForm({ onSave }: EntryFormProps) {
+export function EntryForm({
+  totalEntradas,
+  totalSaidas,
+  onSave,
+}: EntryFormProps) {
   const [type, setType] = useState<TransactionType>('entrada');
   const [descricao, setDescricao] = useState<TransactionDescricao>(ENTRADA_DESCRICOES[0]);
   const [amountText, setAmountText] = useState('');
@@ -65,38 +71,50 @@ export function EntryForm({ onSave }: EntryFormProps) {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="w-full max-w-lg mx-auto bg-white border border-[#E4E7EC] rounded-2xl p-6 sm:p-8 shadow-xs"
+      className="w-full max-w-2xl mx-auto bg-white border border-[#E4E7EC] rounded-2xl p-6 sm:p-10 shadow-xs"
     >
-      <div className="space-y-6">
+      <div className="space-y-7 sm:space-y-8">
         {/* Auto escolha: Entrada ou Saída */}
         <fieldset>
-          <legend className="text-sm font-medium text-[#344054] mb-2">
+          <legend className="text-base font-semibold text-[#1F2937] mb-3">
             Tipo de lançamento
           </legend>
-          <div className="grid grid-cols-2 gap-1.5 p-1 bg-[#F2F4F7] rounded-xl border border-[#E4E7EC]">
+          <div className="grid grid-cols-2 gap-2 p-1.5 bg-[#F2F4F7] rounded-2xl border border-[#E4E7EC]">
             <button
               type="button"
               onClick={() => handleTypeChange('entrada')}
               aria-pressed={type === 'entrada'}
-              className={`min-h-[44px] rounded-lg text-sm font-semibold transition-all whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
+              className={`min-h-[54px] px-3 sm:px-4 rounded-xl text-sm sm:text-base font-semibold transition-all flex items-center justify-center gap-1.5 min-w-0 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
                 type === 'entrada'
                   ? 'bg-white text-[#067647] shadow-xs border border-[#D0D5DD]'
                   : 'text-[#667085] hover:text-[#111827]'
               }`}
             >
-              Entrada
+              <span className="shrink-0">Entrada</span>
+              <span aria-hidden="true" className="opacity-50 shrink-0">
+                ·
+              </span>
+              <span className="font-mono-num truncate">
+                {formatBRL(totalEntradas)}
+              </span>
             </button>
             <button
               type="button"
               onClick={() => handleTypeChange('saida')}
               aria-pressed={type === 'saida'}
-              className={`min-h-[44px] rounded-lg text-sm font-semibold transition-all whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
+              className={`min-h-[54px] px-3 sm:px-4 rounded-xl text-sm sm:text-base font-semibold transition-all flex items-center justify-center gap-1.5 min-w-0 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
                 type === 'saida'
                   ? 'bg-white text-[#B42318] shadow-xs border border-[#D0D5DD]'
                   : 'text-[#667085] hover:text-[#111827]'
               }`}
             >
-              Saída
+              <span className="shrink-0">Saída</span>
+              <span aria-hidden="true" className="opacity-50 shrink-0">
+                ·
+              </span>
+              <span className="font-mono-num truncate">
+                {formatBRL(totalSaidas)}
+              </span>
             </button>
           </div>
         </fieldset>
@@ -105,14 +123,14 @@ export function EntryForm({ onSave }: EntryFormProps) {
         <div>
           <label
             htmlFor="valor-reais"
-            className="block text-sm font-medium text-[#344054] mb-2"
+            className="block text-base font-semibold text-[#1F2937] mb-3"
           >
             Valor em reais
           </label>
           <div className="relative flex items-center">
             <span
               aria-hidden="true"
-              className="absolute left-4 text-lg font-medium text-[#667085] select-none pointer-events-none"
+              className="absolute left-5 text-2xl sm:text-3xl font-semibold text-[#667085] select-none pointer-events-none"
             >
               R$
             </span>
@@ -130,7 +148,7 @@ export function EntryForm({ onSave }: EntryFormProps) {
               }}
               aria-invalid={Boolean(error)}
               aria-describedby={error ? 'valor-erro' : undefined}
-              className={`w-full min-h-[56px] pl-12 pr-4 py-3 text-2xl font-semibold font-mono-num text-[#111827] bg-[#F8F9FA] rounded-xl border transition-colors placeholder:text-[#98A2B3] focus:bg-white focus:outline-none ${
+              className={`w-full min-h-[76px] sm:min-h-[84px] pl-16 sm:pl-20 pr-5 py-4 text-4xl sm:text-5xl font-bold font-mono-num text-[#111827] bg-[#F8F9FA] rounded-2xl border-2 transition-colors placeholder:text-[#98A2B3] focus:bg-white focus:outline-none ${
                 error
                   ? 'border-[#D92D20] focus:border-[#D92D20]'
                   : 'border-[#D0D5DD] focus:border-[#111827]'
@@ -138,7 +156,7 @@ export function EntryForm({ onSave }: EntryFormProps) {
             />
           </div>
           {error && (
-            <p id="valor-erro" role="alert" className="mt-2 text-sm text-[#B42318]">
+            <p id="valor-erro" role="alert" className="mt-2.5 text-base font-medium text-[#B42318]">
               {error}
             </p>
           )}
@@ -146,10 +164,10 @@ export function EntryForm({ onSave }: EntryFormProps) {
 
         {/* Descrição automática conforme tipo */}
         <fieldset>
-          <legend className="text-sm font-medium text-[#344054] mb-2">
+          <legend className="text-base font-semibold text-[#1F2937] mb-3">
             Descrição
           </legend>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
             {descricoes.map((item) => {
               const selected = descricao === item;
               return (
@@ -158,7 +176,7 @@ export function EntryForm({ onSave }: EntryFormProps) {
                   type="button"
                   onClick={() => setDescricao(item)}
                   aria-pressed={selected}
-                  className={`min-h-[44px] px-3 py-2 rounded-xl text-sm font-medium border transition-colors whitespace-nowrap truncate cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
+                  className={`min-h-[52px] px-4 py-3 rounded-xl text-base font-medium border transition-colors whitespace-nowrap truncate cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
                     selected
                       ? type === 'entrada'
                         ? 'bg-[#ECFDF3] border-[#067647] text-[#067647] font-semibold'
@@ -177,7 +195,7 @@ export function EntryForm({ onSave }: EntryFormProps) {
         <div className="pt-1">
           <button
             type="submit"
-            className="w-full min-h-[48px] px-6 py-3 rounded-xl bg-[#111827] text-white text-sm font-semibold hover:bg-[#1F2937] active:scale-[0.99] transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827]"
+            className="w-full min-h-[56px] px-6 py-4 rounded-xl bg-[#111827] text-white text-base sm:text-lg font-semibold hover:bg-[#1F2937] active:scale-[0.99] transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827]"
           >
             Salvar
           </button>
@@ -187,7 +205,7 @@ export function EntryForm({ onSave }: EntryFormProps) {
           <p
             role="status"
             aria-live="polite"
-            className="text-sm text-center text-[#067647] font-medium pt-1"
+            className="text-base text-center text-[#067647] font-semibold pt-1"
           >
             {savedFeedback}
           </p>

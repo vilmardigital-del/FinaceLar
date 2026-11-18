@@ -8,6 +8,8 @@ export const SAIDA_DESCRICOES = [
   'Moradia',
   'Lanchonete',
   'Marmita',
+  'Shopee',
+  'Nubank',
 ] as const;
 
 export type EntradaDescricao = (typeof ENTRADA_DESCRICOES)[number];
@@ -22,4 +24,19 @@ export interface Transaction {
   createdAt: string;
 }
 
-export type ActivePage = 'lancar' | 'entradas' | 'saidas';
+export interface PixReceipt {
+  id: string;
+  titulo: string;
+  fileName: string;
+  mimeType: string;
+  size: number;
+  dataUrl: string;
+  createdAt: string;
+}
+
+export type ActivePage =
+  | 'lancar'
+  | 'entradas'
+  | 'saidas'
+  | 'calculadora'
+  | 'comprovantes';
