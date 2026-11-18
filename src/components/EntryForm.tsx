@@ -79,22 +79,21 @@ export function EntryForm({
           <legend className="text-base font-semibold text-[#1F2937] mb-3">
             Tipo de lançamento
           </legend>
-          <div className="grid grid-cols-2 gap-2 p-1.5 bg-[#F2F4F7] rounded-2xl border border-[#E4E7EC]">
+          <div className="grid grid-cols-2 gap-2.5 p-1.5 bg-[#F2F4F7] rounded-2xl border border-[#E4E7EC]">
             <button
               type="button"
               onClick={() => handleTypeChange('entrada')}
               aria-pressed={type === 'entrada'}
-              className={`min-h-[54px] px-3 sm:px-4 rounded-xl text-sm sm:text-base font-semibold transition-all flex items-center justify-center gap-1.5 min-w-0 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
+              className={`min-h-[84px] sm:min-h-[96px] px-4 py-3.5 rounded-xl transition-all flex flex-col items-start justify-center gap-1 min-w-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
                 type === 'entrada'
                   ? 'bg-white text-[#067647] shadow-xs border border-[#D0D5DD]'
                   : 'text-[#667085] hover:text-[#111827]'
               }`}
             >
-              <span className="shrink-0">Entrada</span>
-              <span aria-hidden="true" className="opacity-50 shrink-0">
-                ·
+              <span className="text-sm sm:text-base font-semibold whitespace-nowrap">
+                Entrada
               </span>
-              <span className="font-mono-num truncate">
+              <span className="w-full text-left text-xl sm:text-2xl font-bold font-mono-num whitespace-nowrap overflow-x-auto">
                 {formatBRL(totalEntradas)}
               </span>
             </button>
@@ -102,17 +101,16 @@ export function EntryForm({
               type="button"
               onClick={() => handleTypeChange('saida')}
               aria-pressed={type === 'saida'}
-              className={`min-h-[54px] px-3 sm:px-4 rounded-xl text-sm sm:text-base font-semibold transition-all flex items-center justify-center gap-1.5 min-w-0 whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
+              className={`min-h-[84px] sm:min-h-[96px] px-4 py-3.5 rounded-xl transition-all flex flex-col items-start justify-center gap-1 min-w-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
                 type === 'saida'
                   ? 'bg-white text-[#B42318] shadow-xs border border-[#D0D5DD]'
                   : 'text-[#667085] hover:text-[#111827]'
               }`}
             >
-              <span className="shrink-0">Saída</span>
-              <span aria-hidden="true" className="opacity-50 shrink-0">
-                ·
+              <span className="text-sm sm:text-base font-semibold whitespace-nowrap">
+                Saída
               </span>
-              <span className="font-mono-num truncate">
+              <span className="w-full text-left text-xl sm:text-2xl font-bold font-mono-num whitespace-nowrap overflow-x-auto">
                 {formatBRL(totalSaidas)}
               </span>
             </button>
