@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { CalculatorPage } from './components/CalculatorPage';
 import { EntryForm } from './components/EntryForm';
 import { PixReceiptsPage } from './components/PixReceiptsPage';
+import { ShoppingListPage } from './components/ShoppingListPage';
 import { TransactionList } from './components/TransactionList';
 import {
   ActivePage,
@@ -195,6 +196,18 @@ export default function App() {
             >
               Comprovantes
             </button>
+            <button
+              type="button"
+              onClick={() => setActivePage('compras')}
+              aria-current={activePage === 'compras' ? 'page' : undefined}
+              className={`min-h-[44px] px-1 text-[13px] sm:text-sm font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer border-b-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
+                activePage === 'compras'
+                  ? 'border-[#15803D] text-[#15803D] font-semibold'
+                  : 'border-transparent text-[#667085] hover:text-[#111827]'
+              }`}
+            >
+              Compras
+            </button>
           </nav>
         </div>
       </header>
@@ -231,6 +244,8 @@ export default function App() {
         {activePage === 'calculadora' && <CalculatorPage />}
 
         {activePage === 'comprovantes' && <PixReceiptsPage />}
+
+        {activePage === 'compras' && <ShoppingListPage />}
       </main>
     </div>
   );

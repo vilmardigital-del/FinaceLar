@@ -34,9 +34,25 @@ export interface PixReceipt {
   createdAt: string;
 }
 
+export interface ManagedShoppingItem {
+  id: string;
+  nome: string;
+  categoria: string;
+  qtdeInicial: string;
+  qtdeCompra: string;
+  qtdeTotal: string;
+  marcado: boolean;
+}
+
+export interface ManagedShoppingList {
+  visibleUntil: string;
+  items: ManagedShoppingItem[];
+}
+
 export type ActivePage =
   | 'lancar'
   | 'entradas'
   | 'saidas'
   | 'calculadora'
-  | 'comprovantes';
+  | 'comprovantes'
+  | 'compras';
