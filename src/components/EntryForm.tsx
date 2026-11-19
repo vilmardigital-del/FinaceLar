@@ -84,10 +84,10 @@ export function EntryForm({
               type="button"
               onClick={() => handleTypeChange('entrada')}
               aria-pressed={type === 'entrada'}
-              className={`min-h-[84px] sm:min-h-[96px] px-4 py-3.5 rounded-xl transition-all flex flex-col items-start justify-center gap-1 min-w-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
+              className={`min-h-[84px] sm:min-h-[96px] px-4 py-3.5 rounded-xl border-2 transition-all flex flex-col items-start justify-center gap-1 min-w-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
                 type === 'entrada'
-                  ? 'bg-white text-[#067647] shadow-xs border border-[#D0D5DD]'
-                  : 'text-[#667085] hover:text-[#111827]'
+                  ? 'bg-[#15803D] text-white border-[#14532D] shadow-sm'
+                  : 'bg-[#16A34A] text-white border-transparent opacity-85 hover:opacity-100'
               }`}
             >
               <span className="text-sm sm:text-base font-semibold whitespace-nowrap">
@@ -101,10 +101,10 @@ export function EntryForm({
               type="button"
               onClick={() => handleTypeChange('saida')}
               aria-pressed={type === 'saida'}
-              className={`min-h-[84px] sm:min-h-[96px] px-4 py-3.5 rounded-xl transition-all flex flex-col items-start justify-center gap-1 min-w-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
+              className={`min-h-[84px] sm:min-h-[96px] px-4 py-3.5 rounded-xl border-2 transition-all flex flex-col items-start justify-center gap-1 min-w-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111827] ${
                 type === 'saida'
-                  ? 'bg-white text-[#B42318] shadow-xs border border-[#D0D5DD]'
-                  : 'text-[#667085] hover:text-[#111827]'
+                  ? 'bg-[#B91C1C] text-white border-[#7F1D1D] shadow-sm'
+                  : 'bg-[#DC2626] text-white border-transparent opacity-85 hover:opacity-100'
               }`}
             >
               <span className="text-sm sm:text-base font-semibold whitespace-nowrap">
